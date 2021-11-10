@@ -1,0 +1,30 @@
+ {% extends 'auth/authbase.html' %}
+    {% block title %}
+    <title>Login - Bookmarker</title>
+    {% endblock %}
+
+    
+    {% block content %}
+        <div class="page-container">
+            <div class="login">
+                <div class="login-bg"></div>
+                <div class="login-content">
+                    <div class="login-box">
+                        <div class="login-header">
+                            <h3>Logged Out</h3>
+                            <p>You have been logged out, Please login to continue.
+                            <a href="{% url 'account:login' %}">Login</a>
+                            </p>
+                        </div>
+                      
+                        <div class="login-footer">
+                            <p>Copyright @Stacks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /Page Container -->
+        
+    {% endblock  %} 
+ 
+ 

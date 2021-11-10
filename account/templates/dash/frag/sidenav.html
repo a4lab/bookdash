@@ -1,0 +1,37 @@
+<div class="secondary-sidebar">
+                    <div class="secondary-sidebar-bar">
+                        <a href="#" class="logo-box">concept</a>
+                    </div>
+                    <div class="secondary-sidebar-menu">
+                        <ul class="accordion-menu">
+                            <li  {% if section == "dashboard" %}class="active-page{% endif %}">
+                                <a href="{% url 'account:dashboard' %}">
+                                    <i class="menu-icon fas fa-home"></i><span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li {% if section == "images" %}class="active-page{% endif %}">
+                                <a href="index.html">
+                                    <i class="menu-icon fas fa-images"></i><span>Images</span>
+                                </a>
+                            </li>
+                            <li {% if section == "people" %}class="active-page{% endif %}">
+                                <a href="index.html">
+                                    <i class="menu-icon fas fa-user-friends"></i><span>People</span>
+                                </a>
+                            </li>
+
+
+                            <li class="menu-divider"></li>
+                            <li>
+                                <a href="#">
+                                    <i class="menu-icon icon-help_outline"></i><span>Documentation</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="menu-icon icon-public"></i><span>Changelog</span><span class="badge badge-danger">1.0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
