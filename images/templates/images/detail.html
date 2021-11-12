@@ -1,0 +1,158 @@
+
+{% extends 'dash/dashbase.html' %}
+{% load static %}
+
+
+{% block maincontent %}
+
+ <!-- Page Inner -->
+                <div class="page-inner no-page-title contacts-app">
+                    <div id="main-wrapper">
+                        
+                        <div class="row">
+                            <div class="col-xl-3">
+                                
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="post">
+                                            
+                                        {% with total_likes=image.users_like.count users_like=image.users_like.all %}
+                                            <div class="post-header">
+                                                <img src="../../assets/images/avatars/avatar4.png">
+                                                <div class="post-info">
+                                                    <span class="post-author">{{image.title}}</span><br>
+                                                    <span class="post-date">3hrs</span>
+                                                </div>
+                                                <div class="post-header-actions">
+                                                    <a href="#"><i class="fas fa-ellipsis-h"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="post-body">
+                                                <p>{{image.description}}.</p>
+                                                <div class="post-actions">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                    <a ><i class="far fa-heart"> <span class="total"> 
+                                                    {{ total_likes }}
+                                                    </span> like{{ total_likes|pluralize }}</i></a>
+                                                        
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="far fa-comment"></i>5 Comment</a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                                <img src="{{image.image.url}}" class="post-image" alt="">
+                                               
+                                            </div>
+                                            <div class="post-actions">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <a href="#" data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button">
+                                                            {% if request.user not in users_like %}
+                                                                <i class="far fa-heart"></i>Like
+                                                            {% else %}
+                                                            <i class="fas fa-heart"></i> Unlike
+                                                            {% endif %}
+                                                        </a>
+                                                        
+                                                        
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="far fa-comment"></i>Comment</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="fas fa-share"></i>Share</a>
+                                                    </li>
+                                                </ul>
+
+                                                
+                                            </div>
+                                            <div class="post-comments">
+                                                <div class="post-comm">
+                                                    <img src="../../assets/images/avatars/avatar2.png" class="comment-img">
+                                                    <div class="comment-container">
+                                                        <span class="comment-author">
+                                                            Sonny Rosas
+                                                            <small class="comment-date">5min</small>
+                                                        </span>
+                                                    </div>
+                                                    <span class="comment-text">
+                                                        Mauris ultrices convallis massa, nec facilisis enim interdum ac.
+                                                    </span>
+                                                </div>
+                                                <div class="post-comm">
+                                                    <img src="../../assets/images/avatars/avatar1.png" class="comment-img">
+                                                    <div class="comment-container">
+                                                        <span class="comment-author">
+                                                            Jacob Lee
+                                                            <small class="comment-date">27min</small>
+                                                        </span>
+                                                    </div>
+                                                    <span class="comment-text">
+                                                        Cras tincidunt quam nisl, vitae aliquet enim pharetra at. Nunc varius bibendum turpis, vitae ultrices tortor facilisis ac.
+                                                    </span>
+                                                </div>
+                                                <div class="new-comment">
+                                                    <form action="javascript: void(0)">
+                                                        <div class="input-group">
+                                                            <input type="text" name="comment" class="form-control search-input" placeholder="Type something...">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-secondary" type="button" id="button-addon1">Comment</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        {% endwith %}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-xl-3">
+                                
+                            </div>
+                        </div>
+                        
+                    </div><!-- Main Wrapper -->
+
+                    
+                   
+                </div><!-- /Page Inner -->
+{% endblock  %}
+
+
+{% block domready %}
+    $('a.like').click(function(e){
+        e.preventDefault(); 
+            $.post('{% url "images:like" %}',
+            {
+                id: $(this).data('id'),
+                action: $(this).data('action')
+            },
+        function(data){
+            if (data['status'] == 'ok')
+            {
+            var previous_action = $('a.like').data('action');
+            // toggle data-action
+            $('a.like').data('action', previous_action == 'like' ?
+            'unlike' : 'like');
+            // toggle link text
+            $('a.like').text(previous_action == 'like' ? 'Unlike' :
+            'Like');
+            // update total likes
+            var previous_likes = parseInt($('span.total').
+            text());
+            $('span.total').text(previous_action == 'like' ?
+            previous_likes + 1 : previous_likes - 1);
+            }
+        }
+        );
+  });
+
+{% endblock %}

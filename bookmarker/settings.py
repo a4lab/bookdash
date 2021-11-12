@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'images.apps.ImagesConfig',
+    'easy_thumbnails',
 ]
 # python manage.py runserver_plus --cert-file cert.crt
 MIDDLEWARE = [

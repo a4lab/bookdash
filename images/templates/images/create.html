@@ -1,0 +1,68 @@
+{% extends 'dash/dashbase.html' %}
+{% block maincontent %}
+
+<div class="page-inner no-page-title">
+                    <div id="main-wrapper">
+                        <div class="content-header">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb breadcrumb-style-1">
+                                    <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Form Elements</li>
+                                </ol>
+                            </nav>
+                            <h1 class="page-title">Edit Profile</h1>
+                        </div>
+                        
+                        {% if resp %}
+                        <div class="alert alert-success" role="alert">
+                                {{resp}}
+                        </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="card ">
+
+                                    
+
+                                    <div class="card-body">
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img alt="Card image cap" class="card-img-top embed-responsive-item" src="{{ request.GET.url }}" />
+                                         </div>                                        
+                                         
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Create Image Bookmark</h5>
+                                          
+                                        <form method="POST" class="needs-validation" novalidate>
+                                        {% csrf_token %}
+                                            {% for field in form %}
+                                            <div class="form-group">
+                                                <label for="field.name">{{field.name}}</label>
+                                                {{field}}
+                                                {% comment %} <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> {% endcomment %}
+                                            </div>
+                                            {% endfor %}
+                                              
+                                            
+                                        
+    
+
+                                            
+                                           
+                                            <button class="btn btn-primary" type="submit">Bookmark It</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+</div>
+
+
+{% endblock  %}
