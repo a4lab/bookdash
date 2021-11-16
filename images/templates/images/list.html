@@ -1,0 +1,67 @@
+
+{% extends 'dash/dashbase.html' %}
+{% load static %}
+
+
+{% block maincontent %}
+
+ <!-- Page Inner -->
+                <div class="page-inner no-page-title contacts-app">
+                    <div id="main-wrapper">
+                        
+                        <div class="container">
+                            {% comment %} <div class="col-xl-3">
+                                
+                            </div> {% endcomment %}
+                            {% for im in images %}
+                            
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="post">
+                                            
+                                        {% with total_likes=image.users_like.count users_like=image.users_like.all %}
+                                            <div class="post-header">
+                                                <img src="../../assets/images/avatars/avatar4.png">
+                                                <div class="post-info">
+                                                    <span class="post-author"> <a href="{% url 'images:detail' im.id im.slug %}">{{im.title}}</a> </span><br>
+                                                    <span class="post-date">{{im.created}} by <b>{{im.user}}</b></span>
+                                                </div>
+                                                <div class="post-header-actions">
+                                                    <a href="{% url 'images:detail' im.id im.slug %}"><i class="fas fa-ellipsis-h"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="post-body">
+                                                <p>{{im.description}}.</p>
+                                                <div class="post-actions">
+                                                
+                                            </div>
+                                                <img src="{{im.image.url}}" class="post-image" alt="">
+                                               
+                                            </div>
+                                            <div class="post-actions">
+                                                
+
+                                                
+                                            </div>
+                                           
+                                        {% endwith %}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            {% endfor %}
+                            
+                        </div>
+                        
+                    </div><!-- Main Wrapper -->
+
+                    
+                   
+                </div><!-- /Page Inner -->
+{% endblock  %}
+
+

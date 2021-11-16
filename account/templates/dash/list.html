@@ -1,0 +1,66 @@
+
+{% extends 'dash/dashbase.html' %}
+{% load static %}
+
+
+{% block maincontent %}
+
+ <!-- Page Inner -->
+                <div class="page-inner no-page-title contacts-app">
+                    <div id="main-wrapper">
+                        
+                        <div class="container">
+                           {% for user in users %}
+                           
+                           <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="post">
+                                            
+                                            <div class="post-header">
+                                                <img src="/{{user.profile.photo}} ">
+                                                <div class="post-info">
+                                                    <span class="post-author">{{user.get_full_name }}</span><br>
+                                                    <span class="post-date"><a href="{{user.get_absolute_url}}">@{{user.username}}</a></b></span>
+                                                </div>
+                                                <div class="post-header-actions">
+                                                    <a href="#"><i class="fas fa-ellipsis-h"></i></a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="post-actions">
+                                                <ul class="list-unstyled">
+                                                   {% if request.user not in user.followers.all %}
+                                                   <li>
+                                                        <a href="#"><i class="fas fa-redo"></i>Follow</a>
+                                                    </li>
+                                                   {% else %}
+
+                                                   <li>
+                                                        <a href="#"><i class="fas fa-undo"></i>Unfollow</a>
+                                                    </li>
+                                                   {% endif %}
+                                                    
+                                                    
+                                                </ul>
+
+                                                
+                                            </div>
+                                           
+                                        
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                           {% endfor %}
+                        </div>
+                        
+                    </div><!-- Main Wrapper -->
+
+                    
+                   
+                </div><!-- /Page Inner -->
+{% endblock  %}

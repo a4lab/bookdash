@@ -1,6 +1,6 @@
 <div class="secondary-sidebar">
                     <div class="secondary-sidebar-bar">
-                        <a href="#" class="logo-box">concept</a>
+                        <a href="#" class="logo-box">Sosial</a>
                     </div>
                     <div class="secondary-sidebar-menu">
                         <ul class="accordion-menu">
@@ -10,12 +10,12 @@
                                 </a>
                             </li>
                             <li {% if section == "images" %}class="active-page{% endif %}">
-                                <a href="index.html">
+                                <a href="{% url 'images:list' %}">
                                     <i class="menu-icon fas fa-images"></i><span>Images</span>
                                 </a>
                             </li>
                             <li {% if section == "people" %}class="active-page{% endif %}">
-                                <a href="index.html">
+                                <a href="{% url 'account:user_list' %}">
                                     <i class="menu-icon fas fa-user-friends"></i><span>People</span>
                                 </a>
                             </li>

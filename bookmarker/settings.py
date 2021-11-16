@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,6 +27,9 @@ DEBUG = True
 
 # use ALLOWED_HOSTS = [] to set servers that can server my app
 ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
+
+
+
 
 # redirectrs for authentication
 LOGIN_REDIRECT_URL = 'account:dashboard'
@@ -60,6 +63,7 @@ INSTALLED_APPS = [
     'images.apps.ImagesConfig',
     'easy_thumbnails',
 ]
+# cd ../../ && source bookmarker/bin/activate && cd bookmarker/bookmarker
 # python manage.py runserver_plus --cert-file cert.crt
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -145,3 +149,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Allows us to set absoolut url for a model. in this case the user model as it has already been defined
+ABSOLUTE_URL_OVERRIDES={
+    'auth.user':lambda u : reverse_lazy('account:user_detail',args=[u.username])
+}

@@ -43,3 +43,13 @@ class ImageCreateForm(forms.ModelForm):
         if commit:
             image.save()
         return image
+
+# class CommentForm(forms.ModelForm):
+    
+#     class Meta:
+#         model = Comment
+#         fields = ('body',)
+#         widgets={
+#             'body':forms.TextInput(attrs={'class':"form-control",'required':'required'}),
+#         }
+        

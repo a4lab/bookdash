@@ -1,0 +1,11 @@
+ <div class="new-comment">
+                                                    <form method=" {% url 'images:comment' %} ">
+                                                        <div class="input-group">
+                                                        {% csrf_token %}
+                                                            {{comment}}
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-secondary" type="button" id="button-addon1">Comment</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>

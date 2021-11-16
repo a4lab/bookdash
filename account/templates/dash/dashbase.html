@@ -12,7 +12,7 @@
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         
         <!-- Title -->
-        <title>concept - Responsive Admin Dashboard Template</title>
+        <title>Sosial</title>
 
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
@@ -34,7 +34,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
+    <body class="collapsed-sidebar">
         
         <!-- Page Container -->
         <div class="page-container">
@@ -129,7 +129,7 @@
                             <div class="navbar-header">
                                 <div class="logo-sm">
                                     <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fas fa-bars"></i></a>
-                                    <a class="logo-box" href="index.html"><span>concept</span></a>
+                                    <a class="logo-box" href="index.html"><span>Sosial</span></a>
                                 </div>
                                 <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                                     <i class="fas fa-angle-down"></i>
@@ -337,18 +337,18 @@
         <!-- Javascripts -->
        
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
-        <!-- <script src="{% static 'plugins/bootstrap/popper.min.js' %}"></script> -->
+         <script src="{% static 'plugins/bootstrap/popper.min.js' %}"></script>
         <script src="{% static 'plugins/bootstrap/js/bootstrap.min.j' %}s"></script>
         <script src="{% static 'plugins/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
         <script src="{% static 'plugins/switchery/switchery.min.js' %}"></script>
-        <!-- <script src="{% static 'plugins/apexcharts/dist/apexcharts.min.js' %}"></script>
-        <script src="{% static 'plugins/chartjs/chart.min.js' %}"></script> -->
+        <script src="{% static 'plugins/apexcharts/dist/apexcharts.min.js' %}"></script>
+        <script src="{% static 'plugins/chartjs/chart.min.js' %}"></script> 
         <script src="{% static 'js/concept.min.js' %}"></script>
         <script src="{% static 'js/pages/dashboard.js' %}"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-
+        
         <script>
             var csrftoken = Cookies.get('csrftoken');
             console.log(csrftoken)
@@ -367,6 +367,11 @@
                 {% block domready %}
                 {% endblock %}
             });
+            {% block commentpost %}
+            {% endblock %}
+        </script>
+        <script>
+        
         </script>
         
     </body>

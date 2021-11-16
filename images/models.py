@@ -12,7 +12,7 @@ class Image(models.Model):
     description = models.TextField(blank=True)
     created = models.DateField(auto_now_add=True,db_index=True)
     users_like=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='images_liked',blank=True)
-
+    
     def __str__(self):
         return self.title
 
@@ -29,4 +29,17 @@ class Image(models.Model):
 
     def get_absolute_url(self):
         return reverse('images:detail', args=[self.id,self.slug])
-    
+
+# class Comment(models.Model):
+#     image=models.ForeignKey(Image,related_name='image_comment',on_delete=models.CASCADE)
+#     created=models.DateField(auto_now_add=True,db_index=True)
+#     user=models.ForeignKey(settings.AUTH_USER_MODEL,related_name='user_comment',on_delete=models.CASCADE)
+#     body=models.TextField(blank=True)
+#     def __str__(self):
+#         pass
+
+#     class Meta:
+#         db_table = ''
+#         managed = True
+#         verbose_name = 'Comment'
+#         verbose_name_plural = 'Comments'

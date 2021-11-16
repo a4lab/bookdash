@@ -16,7 +16,7 @@
                                         <img src="{% static '../../assets/images/avatars/avatar3.png' %} ">
                                     </div>
                                     <div class="profile-name">
-                                        <h3>T-Jay Morton</h3>
+                                        <h3>{{request.user.username}}</h3>
                                     </div>
                                     <div class="profile-header-menu">
                                         <ul class="list-unstyled">
@@ -33,18 +33,8 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        
-                                        <p>Drag the following button to your bookmarks toolbar to bookmark images from other websites.</p>
-                                        
-                                                
-                                                <button type="button" class="btn btn-block btn-secondary m-t-lg" data-toggle="tooltip" data-placement="right" title="Drag the following button to your bookmarks toolbar to bookmark images from other websites">
-                                                     <a href="javascript:{% include "bookmarklet_launcher.js" %}" ><span class="material-icons">bookmark </span></a>
-                                                </button>
-                                            
-                                    </div>
-                                </div>
+
+
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">About</h5>
@@ -53,7 +43,7 @@
                                             <li><i class="material-icons">school</i><span>Studied Mechanical Engineering at <a href="#">Carnegie Mellon University</a></span></li>
                                             <li><i class="material-icons">work</i><span>Former manager at <a href="#">Stacks</a></span></li>
                                             <li><i class="material-icons">my_location</i><span>From <a href="#">Boston, Massachusetts</a></span></li>
-                                            <li><i class="material-icons">rss_feed</i><span>Followed by 716 people</span></li>
+                                            <li><i class="material-icons">rss_feed</i><span>Followed by {{request.user.followers.count}} people</span></li>
                                             {% with total_images_bookmarked=request.user.images_created.count%}
                                                 <li><i class="material-icons">camera</i><span>Bookmarked <b>
                                                 {{total_images_bookmarked}}         {% if total_images_bookmarked > 1 %} Images {% elif total_images_bookmarked <= 1 %} Image {% endif %}
@@ -61,13 +51,17 @@
                                             {% endwith %}
                                             
 
+                                            {% if request.user not in user.followers.all %}
                                             <li>
                                                 <button class="btn btn-block btn-primary m-t-lg">Follow</button>
                                                 
-                                                <button type="button" class="btn btn-block btn-secondary m-t-lg" data-toggle="tooltip" data-placement="right" title="Drag the following button to your bookmarks toolbar to bookmark images from other websites">
-                                                     Bookmark It
-                                                </button>
                                             </li>
+                                            {% else %}
+                                            <li>
+                                                <button class="btn btn-block btn-primary m-t-lg">Unfollow</button>
+                                                
+                                            </li>
+                                            {% endif %}
                                         </ul>
                                     </div>
                                 </div>
@@ -75,7 +69,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Contact Info</h5>
                                         <ul class="list-unstyled profile-about-list">
-                                            <li><i class="material-icons">mail_outline</i><span>jay.morton@gmail.com</span></li>
+                                            <li><i class="material-icons">mail_outline</i><span>{{request.user.email}}</span></li>
                                             <li><i class="material-icons">home</i><span>Lives in <a href="#">San Francisco, CA</a></span></li>
                                             <li><i class="material-icons">local_phone</i><span>+1 (678) 290 1680</span></li>
                                         </ul>
@@ -212,7 +206,7 @@
                             <div class="col-xl-3">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Stories</h5>
+                                        <h5 class="card-title"></h5>
                                         <div class="story-list">
                                             <div class="story">
                                                 <a href="#"><img src="../../assets/images/avatars/avatar1.png" alt=""></a>

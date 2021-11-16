@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from account.forms import LoginForm, ProfileEditForm, UserEditForm, UserRegistrationForm
 from django.contrib.auth import authenticate,login
@@ -8,6 +8,8 @@ from django.forms.models import model_to_dict
 
 from account.models import Profile
 from django.contrib import messages
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 
@@ -69,3 +71,16 @@ def edit(request):
         user_form=UserEditForm(initial=model_to_dict(user))
         profile_form=ProfileEditForm(initial=model_to_dict(profile))
     return render(request,"dash/edit.html",{'userform':user_form,'profileform':profile_form,'resp':resp})
+
+@login_required
+def user_list(request):
+    users=User.objects.filter(is_active=True)
+    context={'section':'people','users':users}
+    return render(request,'dash/list.html',context)
+
+@login_required
+def user_detail(request,username):
+    user=get_object_or_404(User,username=username,is_active=True)
+    context={'section':'people','user':user}
+    return render(request,'dash/detail.html',context)
+
